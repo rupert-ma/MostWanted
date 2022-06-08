@@ -226,6 +226,9 @@ function searchByTraits(people){
                 case "dob":
                     let foundByDOB = DOBFilter(people);
                     return foundByDOB;
+                case "height":
+                    let foundByHeigt = heightFilter(people);
+                    return foundByHeigt;
             };
 }
 
@@ -250,5 +253,28 @@ function DOBFilter(people){
     });
     return foundByDOB;
 }
+
+function heightFilter(people){
+    let heightChoice = prompt("Enter a height");
+    foundByHeigt = people.filter(function(person) {
+        if (person.height === heightChoice){
+            return true;
+        }
+    })
+    return foundByHeigt;
+}
+
+function searchByUserDefinedTrait(peoplr){
+    let userInputProp = prompt("prompt for trait to search by");
+    let userInputVal = prompt("prompt for value to search by");
+    let results = people.filter(function(person){
+        if (person[userInputProp] === userInputVal || +userInputVal === person[userInputProp]){
+            return true;
+        }
+    }
+    )
+    return results;
+}
+
 
 //End of searchByTraits()
