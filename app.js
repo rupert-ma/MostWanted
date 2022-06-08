@@ -32,6 +32,7 @@ function app(people) {
             //! TODO #4: Declare a searchByTraits (multiple traits) function //////////////////////////////////////////
                 //! TODO #4a: Provide option to search for single or multiple //////////////////////////////////////////
             searchResults = searchByTraits(people);
+            displayPeople(searchResults);
             break;
         default:
             // Re-initializes the app() if neither case was hit above. This is an instance of recursion.
@@ -42,6 +43,13 @@ function app(people) {
     mainMenu(searchResults, people);
 }
 // End of app()
+
+/**
+ * Search by traits function will search for an individual based off a given trait and return the values found.
+ * @param {*} person 
+ * @param {*} people 
+ * @returns 
+ */
 
 /**
  * After finding a single person, we pass in the entire person-object that we found,
@@ -73,6 +81,8 @@ function mainMenu(person, people) {
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
             // HINT: Look for a people-collection stringifier utility function to help
             let personFamily = findPersonFamily(person[0], people);
+
+
             alert(personFamily);
             break;
         case "descendants":
@@ -95,12 +105,7 @@ function mainMenu(person, people) {
 }
 // End of mainMenu()
 
-/**
- * This function is used when searching the people collection by
- * a person-object's firstName and lastName properties.
- * @param {Array} people        A collection of person objects.
- * @returns {Array}             An array containing the person-object (or empty array if no match)
- */
+
 function searchByName(people) {
     let firstName = promptFor("What is the person's first name?", chars);
     let lastName = promptFor("What is the person's last name?", chars);
@@ -140,6 +145,12 @@ function displayPeople(people) {
 function displayPerson(person) {
     let personInfo = `First Name: ${person.firstName}\n`;
     personInfo += `Last Name: ${person.lastName}\n`;
+    personInfo += `Gender: ${person.gender}\n`;
+    personInfo += `DOB: ${person.dob}\n`;
+    personInfo += `height: ${person.height}\n`;
+    personInfo += `Gender: ${person.weight}\n`;
+    personInfo += `Gender: ${person.eyeColor}\n`;
+    personInfo += `Gender: ${person.occupation}\n`;
     //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////
     alert(personInfo);
 }
@@ -183,4 +194,61 @@ function chars(input) {
 // End of chars()
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
-// Any additional functions can be written below this line 👇. Happy Coding! 😁
+// Any additional functions can be written below this line 👇. Happy Coding!
+
+/**
+ * 
+ * 
+ */
+
+function findPersonFamily(){
+
+}
+
+
+
+
+/**
+ * This function is used when searching the people collection by
+ * a person-object's firstName and lastName properties.
+ * @param {Array} people        A collection of person objects.
+ * @returns {Array}             An array containing the person-object (or empty array if no match)
+ */
+function searchByTraits(people){
+    let foundByGender;
+    //use switch case to match response to option
+    //filter array based off response
+    let traitSearchResponse = prompt("Enter the trait you'd like to search by: ");
+            switch(traitSearchResponse){
+                case "gender":
+                    let foundByGender = genderFilter(people);
+                    return foundByGender;
+                case "dob":
+                    let foundByDOB = DOBFilter(people);
+                    return foundByDOB;
+            };
+}
+
+function genderFilter(people){
+    let foundByGender;
+    let genderChoice = prompt("Enter a gender to search for: ");
+    foundByGender = people.filter(function (person) {
+        if (person.gender === genderChoice) {
+            return true;
+        }
+    });
+    return foundByGender;
+}
+
+function DOBFilter(people){
+    let foundByDOB;
+    let DOBChoice = prompt("Enter a DOB to search for: ");
+    foundByDOB = people.filter(function (person) {
+        if (person.dob === DOBChoice) {
+            return true;
+        }
+        return foundByDOB;
+    });
+}
+
+//End of searchByTraits()
