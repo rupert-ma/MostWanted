@@ -247,8 +247,8 @@ function DOBFilter(people){
         if (person.dob === DOBChoice) {
             return true;
         }
-        return foundByDOB;
     });
+    return foundByDOB;
 }
 
 //End of searchByTraits()
