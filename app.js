@@ -88,9 +88,7 @@ function mainMenu(person, people) {
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
             // HINT: Look for a people-collection stringifier utility function to help
             let personFamily = findPersonFamily(person[0], people);
-
-
-            alert(personFamily);
+            displayPeople(personFamily);
             break;
         case "descendants":
             //! TODO #3: Declare a findPersonDescendants function //////////////////////////////////////////
@@ -213,21 +211,32 @@ function findPersonFamily(person, people){
     //look for parent of person
     //look for other persons with same parent
     let familyArray;
-    let spouseArray = getSpouse(person);
-    let parentArray = getparents();
-    let siblingsArray = getSiblings();
+    let spouseArray = getSpouse(person, people);
+    let parentArray = getParents(person, people);
+    //let siblingsArray = getSiblings();
+
+    return parentArray;
 }
 
-function getSpouse(person) {
-    let spouse = person.spouse;
+function getSpouse(person, people) {
+    let spouse = person.currentSpouse;
     let spouseFound = people.filter(function(person){
-        if (person.spouse === spouse){
+        if (person.id === spouse){
             return true;
         }
     })
     return spouseFound
 }
 
+function getParents(person, people){
+    let parentsFound;
+
+    return parentsFound;
+}
+
+function getSiblings(){
+    alert("Get Siblings function");
+}
 
 
 
