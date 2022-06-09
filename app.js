@@ -215,7 +215,6 @@ function findPersonFamily(){
  * @returns {Array}             An array containing the person-object (or empty array if no match)
  */
 function searchByTraits(people){
-    let foundByGender;
     //use switch case to match response to option
     //filter array based off response
     let traitSearchResponse = prompt("Enter the trait you'd like to search by: ");
@@ -264,7 +263,8 @@ function DOBFilter(people){
 }
 
 function heightFilter(people){
-    let heightChoice = prompt("Enter a height");
+    let foundByHeigt;
+    let heightChoice = parseInt(prompt("Enter a height"));
     foundByHeigt = people.filter(function(person) {
         if (person.height === heightChoice){
             return true;
@@ -274,16 +274,26 @@ function heightFilter(people){
 }
 
 function weightFilter(people){
-    let weightChoice = prompt("Enter a weight");
-    foundByweigt = people.filter(function(person) {
+    let foundByWeigt;
+    let weightChoice = parseInt(prompt("Enter a weight"));
+    foundByWeigt = people.filter(function(person) {
         if (person.weight === weightChoice){
             return true;
         }
     })
-    return foundByweigt;
+    return foundByWeigt;
 }
 
-
+function eyeColorFilter(people){
+    let foundByEyeColor;
+    let eyeColorChoice = prompt("Enter an eye color");
+    foundByEyeColor = people.filter(function(person) {
+        if (person.eyeColor === eyeColorChoice){
+            return true;
+        }
+    })
+    return foundByEyeColor;
+}
 
 function searchByUserDefinedTrait(people){
     let userInputProp = prompt("prompt for trait to search by");
