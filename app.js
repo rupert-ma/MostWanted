@@ -229,6 +229,15 @@ function searchByTraits(people){
                 case "height":
                     let foundByHeigt = heightFilter(people);
                     return foundByHeigt;
+                case "weight":
+                    let foundByWeigt = weightFilter(people);
+                    return foundByWeigt;
+                case "eyeColor":
+                    let foundByEyeColor = eyeColorFilter(people);
+                    return foundByEyeColor;
+                case "occupation":
+                    let foundByOccupation = occupationFilter(people);
+                    return foundByOccupation;
             };
 }
 
@@ -264,7 +273,19 @@ function heightFilter(people){
     return foundByHeigt;
 }
 
-function searchByUserDefinedTrait(peoplr){
+function weightFilter(people){
+    let weightChoice = prompt("Enter a weight");
+    foundByweigt = people.filter(function(person) {
+        if (person.weight === weightChoice){
+            return true;
+        }
+    })
+    return foundByweigt;
+}
+
+
+
+function searchByUserDefinedTrait(people){
     let userInputProp = prompt("prompt for trait to search by");
     let userInputVal = prompt("prompt for value to search by");
     let results = people.filter(function(person){
