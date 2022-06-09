@@ -35,6 +35,11 @@ function app(people) {
             //searchResults = searchByTraits(people);
             searchResults = searchByUserDefinedTrait(people);
             displayPeople(searchResults);
+            while(searchResults.length > 1){
+                alert("There were multiple people found, lets narrow down the search.");
+                searchResults = searchByUserDefinedTrait(searchResults);
+                displayPeople(searchResults); 
+            } 
             break;
         default:
             // Re-initializes the app() if neither case was hit above. This is an instance of recursion.
@@ -203,8 +208,24 @@ function chars(input) {
  * 
  */
 
-function findPersonFamily(){
+function findPersonFamily(person, people){
+    //look for spouse
+    //look for parent of person
+    //look for other persons with same parent
+    let familyArray;
+    let spouseArray = getSpouse(person);
+    let parentArray = getparents();
+    let siblingsArray = getSiblings();
+}
 
+function getSpouse(person) {
+    let spouse = person.spouse;
+    let spouseFound = people.filter(function(person){
+        if (person.spouse === spouse){
+            return true;
+        }
+    })
+    return spouseFound
 }
 
 
@@ -309,8 +330,8 @@ function occupationFilter(people){
 }
 
 function searchByUserDefinedTrait(people){
-    let userInputProp = prompt("prompt for trait to search by");
-    let userInputVal = prompt("prompt for value to search by");
+    let userInputProp = prompt("Enter a trait to search by");
+    let userInputVal = prompt("Enter a value to search by");
     let results = people.filter(function(person){
         if (person[userInputProp] === userInputVal || +userInputVal === person[userInputProp]){
             return true;
