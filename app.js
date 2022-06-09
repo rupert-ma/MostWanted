@@ -295,6 +295,17 @@ function eyeColorFilter(people){
     return foundByEyeColor;
 }
 
+function occupationFilter(people){
+    let foundByOccupation;
+    let occupationChoice = prompt("Enter an occupation");
+    foundByOccupation = people.filter(function(person) {
+        if (person.occupation === occupationChoice){
+            return true;
+        }
+    })
+    return foundByOccupation;
+}
+
 function searchByUserDefinedTrait(people){
     let userInputProp = prompt("prompt for trait to search by");
     let userInputVal = prompt("prompt for value to search by");
