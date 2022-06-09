@@ -31,7 +31,9 @@ function app(people) {
         case "no":
             //! TODO #4: Declare a searchByTraits (multiple traits) function //////////////////////////////////////////
                 //! TODO #4a: Provide option to search for single or multiple //////////////////////////////////////////
-            searchResults = searchByTraits(people);
+            
+            //searchResults = searchByTraits(people);
+            searchResults = searchByUserDefinedTrait(people);
             displayPeople(searchResults);
             break;
         default:
