@@ -207,15 +207,12 @@ function chars(input) {
  */
 
 function findPersonFamily(person, people){
-    //look for spouse
-    //look for parent of person
-    //look for other persons with same parent
+    
     let familyArray;
     let spouseArray = getSpouse(person, people);
     let parentArray = getParents(person, people);
-    //let siblingsArray = getSiblings();
-
-    return parentArray;
+    let siblingsArray = getSiblings(person, people);
+    return siblingsArray;
 }
 
 function getSpouse(person, people = []) {
@@ -242,29 +239,15 @@ function getParents(person, people){
     return parentsFound;
 }
 
-// function getParents(person, array = []){
-//     let parentArray = person.parents;
-//     array = [person];
-//     if(parentArray === 0){
-//         return null;
-//     }
-//     for(let i = 0; i < parentArray.length; i++){
-//         array = array.concat(getParents(parentArray[i]))
-//     }
-
-//     return array;
-// }
-
-function getSiblings(){
+function getSiblings(person, people){
     let siblingsFound;
     let parentArray = person.parents;
     for (let i = 0; i < parentArray.length; i++){
         siblingsFound = people.filter(function(person){
-            if (person.parents === parentArray){
+            if (person.parents[i] === parentArray[i]){
                 return true;
             }
         });
-
     }
     return siblingsFound;
 }
