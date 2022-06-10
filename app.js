@@ -218,26 +218,56 @@ function findPersonFamily(person, people){
     return parentArray;
 }
 
-function getSpouse(person, people) {
+function getSpouse(person, people = []) {
     let spouse = person.currentSpouse;
     let spouseFound = people.filter(function(person){
         if (person.id === spouse){
             return true;
         }
-    })
-    return spouseFound
+    });
+    return spouseFound;
 }
 
 function getParents(person, people){
     let parentsFound;
+    let parentArray = person.parents;
+    for (let i = 0; i < parentArray.length; i++){
+        parentsFound = people.filter(function(person){
+            if (person.parents === parentArray[i]){
+                return true;
+            }
+        });
 
+    }
     return parentsFound;
 }
 
-function getSiblings(){
-    alert("Get Siblings function");
-}
+// function getParents(person, array = []){
+//     let parentArray = person.parents;
+//     array = [person];
+//     if(parentArray === 0){
+//         return null;
+//     }
+//     for(let i = 0; i < parentArray.length; i++){
+//         array = array.concat(getParents(parentArray[i]))
+//     }
 
+//     return array;
+// }
+
+function getSiblings(){
+    let siblingsFound;
+    let parentArray = person.parents;
+    for (let i = 0; i < parentArray.length; i++){
+        siblingsFound = people.filter(function(person){
+            if (person.parents === parentArray){
+                return true;
+            }
+        });
+
+    }
+    return siblingsFound;
+}
 
 
 /**
