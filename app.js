@@ -229,15 +229,15 @@ function getSpouse(person, people = []) {
 }
 
 function getParents(person, people){
-    let parentsFound;
+    let parentsFound = [];
     let parentArray = person.parents;
     for (let i = 0; i < parentArray.length; i++){
-        parentsFound = people.filter(function(person){
-            if (person.parents === parentArray[i]){
+        let parentsFoundJoin = parentsFound.concat(people.filter(function(person){
+            if (person.id === parentArray[i]){
                 return true;
             }
-        });
-
+        }));
+        parentsFound = parentsFoundJoin;
     }
     return parentsFound;
 }
