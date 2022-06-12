@@ -94,7 +94,7 @@ function mainMenu(person, people) {
             //! TODO #3: Declare a findPersonDescendants function //////////////////////////////////////////
             // HINT: Review recursion lecture + demo for bonus user story
             let personDescendants = findPersonDescendants(person[0], people);
-            alert(personDescendants);
+            displayPeople(personDescendants);
             break;
         case "restart":
             // Restart app() from the very beginning
@@ -201,17 +201,34 @@ function chars(input) {
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding!
 
-/**
- * 
- * 
- */
+function findPersonDescendants(person, people, foundDescendants = []) {
+    //have parent ID
+    //person is descendant of parent id
+    //find persons with person.id in person.parent property
+    let parentArray = person.parents;
+    let parentID = person.id;
+    foundDescendants=[person];
+    if(people.includes(parentID)===false){
+        return foundDescendants;
+    }
+    //recursive case
+    for (let i = 0; i < people.length; i++){
+        //let newPerson = [people[i]];
+       // let newParentArray = [newPerson.parents];
+        //let newPersonParentList = newPerson.includes(parentID);
+        //if(newParentArray.includes(parentID)===false){
+            foundDescendants = foundDescendants.concat(findPersonDescendants(people[i], people))
+        //}
+    }
+    return foundDescendants;
+}
 
-function findPersonFamily(person, people){
-    
+function findPersonFamily(person, people){ 
     let familyArray;
     let spouseArray = getSpouse(person, people);
     let parentArray = getParents(person, people);
     let siblingsArray = getSiblings(person, people);
+    displayPeople(spouseArray);
     return siblingsArray;
 }
 
